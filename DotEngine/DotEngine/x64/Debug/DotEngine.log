@@ -1,0 +1,7 @@
+﻿  Game.cpp
+C:\Users\Martin.Andersson\Desktop\Courses\ComputerTechnology\Assignment\Dots\DotEngine\DotEngine\Game.cpp(82,31): warning C4267: 'argument': conversion from 'size_t' to '_Ty', possible loss of data
+C:\Users\Martin.Andersson\Desktop\Courses\ComputerTechnology\Assignment\Dots\DotEngine\DotEngine\Game.cpp(82,31): warning C4267:         with
+C:\Users\Martin.Andersson\Desktop\Courses\ComputerTechnology\Assignment\Dots\DotEngine\DotEngine\Game.cpp(82,31): warning C4267:         [
+C:\Users\Martin.Andersson\Desktop\Courses\ComputerTechnology\Assignment\Dots\DotEngine\DotEngine\Game.cpp(82,31): warning C4267:             _Ty=int
+C:\Users\Martin.Andersson\Desktop\Courses\ComputerTechnology\Assignment\Dots\DotEngine\DotEngine\Game.cpp(82,31): warning C4267:         ]
+  DotEngine.vcxproj -> C:\Users\Martin.Andersson\Desktop\Courses\ComputerTechnology\Assignment\Dots\DotEngine\x64\Debug\DotEngine.exe
