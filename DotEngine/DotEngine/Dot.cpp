@@ -32,11 +32,11 @@ void Dot::Render(DotRenderer* aRenderer, float dt)
 	if (!overriden)
 	{
 
-		float redColor = (glm::cos((totalTime + startPos.x) * 0.1f) * 0.5f + 0.5f) * 255.0f;
+		float redColor = (std::cosf((totalTime + startPos.x) * 0.1f) * 0.5f + 0.5f) * 255.0f;
 
-		float greenColor = (glm::cos((totalTime + startPos.y) * 0.9f) * 0.5f + 0.5f) * 255.0f;
+		float greenColor = (std::cosf((totalTime + startPos.y) * 0.9f) * 0.5f + 0.5f) * 255.0f;
 
-		float blueColor = (glm::cos(totalTime * 0.4f) * 0.5f + 0.5f) * 255.0f;
+		float blueColor = (std::cosf(totalTime * 0.4f) * 0.5f + 0.5f) * 255.0f;
 
 		aRenderer->SetDrawColor(redColor, greenColor, blueColor, 255);
 	}
