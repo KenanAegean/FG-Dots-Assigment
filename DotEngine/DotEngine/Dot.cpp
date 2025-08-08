@@ -26,17 +26,17 @@ Dot::Dot(glm::vec2 aPosition, float aRadius)
 void Dot::Render(DotRenderer* aRenderer, float dt)
 {
 	totalTime += dt;
-
 	position += velocity * DotVelocity * dt;
 
 	if (!overriden)
 	{
-
-		float redColor = (std::cosf((totalTime + startPos.x) * 0.1f) * 0.5f + 0.5f) * 255.0f;
-
-		float greenColor = (std::cosf((totalTime + startPos.y) * 0.9f) * 0.5f + 0.5f) * 255.0f;
-
-		float blueColor = (std::cosf(totalTime * 0.4f) * 0.5f + 0.5f) * 255.0f;
+		const float waveX = totalTime * 0.1f + startPos.x * 0.1f;
+		const float waveY = totalTime * 0.9f + startPos.y * 0.9f;
+		const float waveZ = totalTime * 0.4f;
+		
+		Uint8 redColor   = static_cast<Uint8>((std::cosf(waveX) * 0.5f + 0.5f) * 255.0f);
+		Uint8 greenColor = static_cast<Uint8>((std::cosf(waveY) * 0.5f + 0.5f) * 255.0f);
+		Uint8 blueColor  = static_cast<Uint8>((std::cosf(waveZ) * 0.5f + 0.5f) * 255.0f);
 
 		aRenderer->SetDrawColor(redColor, greenColor, blueColor, 255);
 	}
@@ -46,7 +46,7 @@ void Dot::Render(DotRenderer* aRenderer, float dt)
 	}
 
 	aRenderer->DrawFilledCircle(position.x, position.y, Radius);
-
+	
 	if (position.x - Radius < 0.0f)
 	{
 		position.x = Radius;
@@ -69,6 +69,7 @@ void Dot::Render(DotRenderer* aRenderer, float dt)
 		velocity.y *= -1;
 	}
 }
+
 
 void Dot::TakeDamage(int someDamage)
 {

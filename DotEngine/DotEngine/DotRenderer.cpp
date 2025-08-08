@@ -1,7 +1,8 @@
 #include "DotRenderer.h"
 #include <SDL3/SDL_render.h>
 #include <SDL3/SDL.h>
-#include <cmath> 
+#include <cmath>
+#include <unordered_map>
 
 DotRenderer::DotRenderer(SDL_Window* window) : m_sdlRenderer(nullptr)
 {
@@ -84,11 +85,29 @@ void DotRenderer::DrawCircle(int centerX, int centerY, int radius)
 
 void DotRenderer::DrawFilledCircle(int centerX, int centerY, int radius)
 {
-	if (!m_sdlRenderer) return;
+	if (!m_sdlRenderer || radius <= 0) return;
 
-	for (int y = -radius; y <= radius; y++) 
+	static std::unordered_map<int, std::vector<int>> filledCircleCache;
+	
+	if (filledCircleCache.find(radius) == filledCircleCache.end())
 	{
-		int x = static_cast<int>(std::sqrt(radius * radius - y * y));
+		std::vector<int> lookup;
+		lookup.reserve(2 * radius + 1);
+
+		for (int y = -radius; y <= radius; ++y)
+		{
+			int x = static_cast<int>(std::sqrt(radius * radius - y * y));
+			lookup.push_back(x);
+		}
+
+		filledCircleCache[radius] = std::move(lookup);
+	}
+	
+	const std::vector<int>& lookup = filledCircleCache[radius];
+
+	for (int y = -radius; y <= radius; ++y)
+	{
+		int x = lookup[y + radius];
 		SDL_RenderLine(m_sdlRenderer, centerX - x, centerY + y, centerX + x, centerY + y);
 	}
 }
